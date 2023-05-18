@@ -1,0 +1,5 @@
+<mat-toolbar color="primary">Gipher App
+  <div *ngIf="isUserLoggedIn()" class="logout">
+    <button type="button" (click)="logout()" class="mat-button">Logout</button>
+  </div>
+</mat-toolbar>

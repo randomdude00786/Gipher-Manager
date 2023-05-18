@@ -1,0 +1,59 @@
+<strong *ngIf="submitMessage" class="error-message">{{submitMessage}}</strong>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <form (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
+        <div class="col-sm-5">
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': submitted && searchhashaserror()}"
+            formControlName="query" />
+          <div *ngIf="submitted && searchhashaserror()" class="invalid-feedback">
+            <div *ngIf="submitted && searchhashaserror()">query is required</div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div>
+            <button type="submit" [disabled]="!searchForm.valid" mat-button>Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<mat-tab-group >
+  <mat-tab label="Giphers">
+    <ng-template matTabContent>
+      <app-gipher-view [searchedGiphers]="searchedGiphers"></app-gipher-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Reaction">
+    <ng-template matTabContent >
+      <app-gipher-view [searchedGiphers]="reactionGiphers"></app-gipher-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Entertainment">
+    <ng-template matTabContent>
+      <app-gipher-view [searchedGiphers]="entertainmentGiphers"></app-gipher-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Sports">
+    <ng-template matTabContent>
+      <app-gipher-view [searchedGiphers]="sportsGiphers"></app-gipher-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Sticker">
+    <ng-template matTabContent>
+      <app-gipher-view [searchedGiphers]="stickerGiphers"></app-gipher-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Bookmarks">
+    <ng-template matTabContent>
+      <app-bookmark></app-bookmark>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Favourites">
+    <ng-template matTabContent>
+      <app-favourite></app-favourite>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

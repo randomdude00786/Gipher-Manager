@@ -1,0 +1,32 @@
+<strong *ngIf="submitMessage" class="error-message">{{submitMessage}}</strong>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class ="row">
+            <div class="col-sm-4">
+                <form (ngSubmit)="loginSubmit()" [formGroup]="loginForm">
+                    <div>
+                        <label for="userId">User Id</label>
+                        <input type="text"  class="form-control" [ngClass]="{'is-invalid': submitted && usernamehaserror()}"  formControlName="userId"/>
+                        <div *ngIf = "submitted && usernamehaserror()" class="invalid-feedback">
+                           <div *ngIf = "submitted && usernamehaserror()">Username is required</div> 
+                        </div>
+                        </div>
+                        <br>
+                       <div>
+                        <label for="userPassword">Password</label>
+                        <input type="password" class="form-control" [ngClass]="{'is-invalid': submitted && passwordhaserrorminlength()}" formControlName="userPassword"/>
+                        <div *ngIf = "submitted && passwordhaserrorminlength()" class="invalid-feedback">
+                            <div *ngIf = "submitted && passwordhaserrorminlength()">Password is required and must be minimum 5 character</div> 
+                         </div>
+                    </div>
+                    <br>
+                    <div>
+                        <button type="submit" [disabled] = "!loginForm.valid" mat-button>Login</button>
+                        <a routerLink="/register" class="btn btn-link">Register</a>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Sign up</h1>
+          <strong *ngIf="submitMessage" class="error-message">{{submitMessage}}</strong>
+          <strong *ngIf="submitSuccessMessage" class="success-message">{{submitSuccessMessage}}</strong>
+          <form (ngSubmit)="Submit()" [formGroup]="RegisterForm">
+            <div>
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': submitted && firstnamehaserror()}" formControlName="firstName"
+              />
+              <div *ngIf="submitted && firstnamehaserror()" class="invalid-feedback">
+                First name is required
+              </div>
+            </div>
+            <div>
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': submitted && lastnamehaserror()}" formControlName="lastName"
+              />
+              <div *ngIf="submitted && lastnamehaserror()" class="invalid-feedback">
+                Last name is required
+              </div>
+            </div>
+            <div>
+              <label for="userId">User Id</label>
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': submitted && usernamehaserror()}" formControlName="userId"
+              />
+              <div *ngIf="submitted && usernamehaserror()" class="invalid-feedback">
+                User id is required
+              </div>
+            </div>
+            <div>
+              <label for="userPassword">Password</label>
+              <input type="password" class="form-control" [ngClass]="{'is-invalid': submitted && passwordhaserror()}" formControlName="userPassword"
+              />
+              <div *ngIf="submitted && passwordhaserror()" class="invalid-feedback">
+                Password is required
+              </div>
+            </div>
+            <div>
+              <label for="email">email</label>
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': submitted && useremailhaserror()}" formControlName="email"
+              />
+              <div *ngIf="submitted && useremailhaserror()" class="invalid-feedback">
+                email is required
+              </div>
+            </div>
+            <div>
+              <button type="submit" [disabled]="!RegisterForm.valid" mat-button> <a routerLink="/login" >Submit</a></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
